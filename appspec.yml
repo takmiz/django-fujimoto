@@ -1,0 +1,20 @@
+version: 0.0
+os: linux
+files:
+  - source: project
+    destination: /var/lib/project
+  - source: requirements.txt
+    destination: /tmp
+permissions:
+  - object: /var/lib/project
+    owner: apache
+    group: apache
+hooks:
+  AfterInstall:
+    - location: scripts/after_install.sh
+      timeout: 60
+      runas: root
+  ApplicationStart:
+    - location: scripts/application_start.sh
+      timeout: 10
+      runas: root

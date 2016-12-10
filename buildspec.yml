@@ -1,0 +1,16 @@
+version: 0.1
+
+phases:
+  install:
+    commands:
+      - pip install -r requirements.txt
+  pre_build:
+    commands:
+      - python project/manage.py test app.tests
+  build:
+    commands:
+      - python ./setup.py
+artifacts:
+  files:
+    - django-fujimoto.tar.gz
+  discard-paths: yes
